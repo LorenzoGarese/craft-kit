@@ -1,0 +1,7 @@
+{
+  "name": "craft-kit",
+  "owner": { "name": "Garese" },
+  "plugins": [
+    { "name": "craft", "source": "./plugins/craft", "version": "2.0.0", "description": "Kit de UI de producto: UX (ui-ux-pro-max), gusto (frontend-design), auditoria (impeccable), motion (design-motion-principles), texto (stop-slop)." }
+  ]
+}
