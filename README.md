@@ -1,6 +1,6 @@
 # craft-kit
 
-Un plugin (`craft`) con cinco skills, cada una en un eje distinto:
+Un plugin (`craft`) con seis skills, cada una en un eje distinto:
 
 | Skill | Eje |
 |---|---|
@@ -9,6 +9,7 @@ Un plugin (`craft`) con cinco skills, cada una en un eje distinto:
 | impeccable | Auditoria: detecta anti-patterns visuales |
 | design-motion-principles | Animaciones (crear + auditar motion) |
 | stop-slop | Textos y microcopy |
+| remotion-best-practices | Creacion de video con Remotion (React) |
 
 ## Instalar
 ```

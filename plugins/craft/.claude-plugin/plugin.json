@@ -1,6 +1,6 @@
 {
   "name": "craft",
-  "version": "2.0.0",
-  "description": "Kit completo para construir UI de producto con calidad, cada skill en un eje distinto. ui-ux-pro-max aporta rigor de UX y patrones de producto (forms, tablas, charts, multi-stack), frontend-design el gusto estetico para que no parezca templated, impeccable audita anti-patterns visuales, design-motion-principles crea y audita animaciones, y stop-slop limpia los textos.",
+  "version": "2.1.0",
+  "description": "Kit completo para construir UI de producto con calidad, cada skill en un eje distinto. ui-ux-pro-max aporta rigor de UX y patrones de producto (forms, tablas, charts, multi-stack), frontend-design el gusto estetico para que no parezca templated, impeccable audita anti-patterns visuales, design-motion-principles crea y audita animaciones, stop-slop limpia los textos, y remotion-best-practices aporta conocimiento de dominio para crear video con Remotion (React).",
   "author": { "name": "Garese" }
 }
