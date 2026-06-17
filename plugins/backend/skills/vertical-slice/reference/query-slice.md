@@ -5,14 +5,17 @@ Los `<Placeholders>` son **formas, no literales**. Reemplazá `<AppRoot>` y los 
 ## `<Name>Query.cs`
 
 ```csharp
+using <AppRoot>.Application.Abstractions.Mediator; // solo si el repo define un marker de lectura (IReadRequest); detectar
 using MediatR;
 
 namespace <AppRoot>.Application.Features.<Area>.Queries.<Name>;
 
 public sealed record <Name>Query(
     <Type> <Param>)            // params de filtro/id; para "listar" incluir page/pageSize
-    : IRequest<<Name>Response>;
+    : IRequest<<Name>Response>;   // + , IReadRequest  si el repo usa marker de lectura (ver nota)
 ```
+
+> **Marker de lectura (opcional):** Si al **aprender del vecino** ves que las queries del repo llevan un marker de lectura (ej. `IReadRequest`), agregalo igual que el Command lleva `IWriteRequest`, con su `using`. Si el repo no usa marker de lectura (o es inconsistente), omitilo: `IRequest<...>` solo alcanza.
 
 ## `<Name>QueryHandler.cs`
 

@@ -22,6 +22,7 @@ public sealed record <Name>Request(
 public async Task<IActionResult> <Name>([FromBody] <Name>Request request, CancellationToken ct)
 {
     var result = await Sender.Send(new <Name>Command(request.<Field1>, request.<Field2>), ct);
+    // ^ Para una QUERY/GET: enviar new <Name>Query(...) (no Command), con los params desde [FromQuery].
     return Success(result, "<mensaje en espanol>");   // o CreatedSuccess(...) en creaciones
 }
 ```
@@ -31,4 +32,5 @@ public async Task<IActionResult> <Name>([FromBody] <Name>Request request, Cancel
 - Si `<Area>Controller.cs` **existe**: insertar el método **antes** de la llave de cierre de la clase; agregar los `using` del Command/Request si faltan; no tocar lo demás.
 - Si **no existe**: crearlo siguiendo el patrón del repo: `[Route("api/<area>")] public sealed class <Area>Controller : BaseApiController`, con los `using` necesarios.
 - Para **query/GET**: usar params `[FromQuery]` en vez de `[FromBody]`; sin Request DTO si son pocos params primitivos.
+- Para **query/GET**: el endpoint envía `new <Name>Query(...)` (no `<Name>Command`); usar `[FromQuery]` para los params y, si son pocos primitivos, omitir el Request DTO.
 - El `Sender`, `Success` y `CreatedSuccess` vienen de `BaseApiController` (no redeclararlos).

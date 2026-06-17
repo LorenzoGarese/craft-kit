@@ -36,8 +36,6 @@ Scaffolding de backend .NET (Clean Architecture + CQRS). Genera vertical slices 
 |---|---|
 | vertical-slice | Genera una slice CQRS completa (Command/Query + Handler + Validator + Response + endpoint) |
 
-<!-- Proximos plugins (ej. backend) van como nuevas entradas en .claude-plugin/marketplace.json y carpetas en plugins/ -->
-
 ## Mantenimiento
 
 - **Reproducir el entorno en una PC nueva** → [`setup/SETUP.md`](setup/SETUP.md). El backup real
