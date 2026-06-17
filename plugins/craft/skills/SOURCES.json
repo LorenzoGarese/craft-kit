@@ -5,11 +5,11 @@
       "name": "frontend-design",
       "upstream": {
         "repo": "https://github.com/anthropics/claude-plugins-public.git",
-        "path": "plugins/frontend-design",
+        "path": "plugins/frontend-design/skills/frontend-design",
         "ref": "main"
       },
       "patches": [],
-      "notes": "Anthropic. Apache-2.0 (incluye LICENSE.txt). Copia directa de SKILL.md."
+      "notes": "Anthropic. Apache-2.0. El upstream empaqueta frontend-design como PLUGIN; la skill en si vive en skills/frontend-design (de ahi el path anidado)."
     },
     {
       "name": "stop-slop",

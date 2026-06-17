@@ -50,14 +50,18 @@ function listFiles(dir) {
   return out;
 }
 
-// Reaplica los parches locales sobre la skill recien traida del upstream.
+const TEXT_EXT = /\.(md|json|mjs|js|ts|tsx|jsx|html|css|py|csv|txt|ya?ml)$/i;
+
+// Normaliza fin-de-linea a LF + reaplica los parches locales sobre la skill recien traida.
+// La normalizacion evita el ruido CRLF/LF en el diff (el repo fuerza LF por .gitattributes).
 function applyPatches(skill) {
   const dir = join(skillsDir, skill.name);
   const patches = skill.patches || [];
   const usesPluginRoot = patches.includes("plugin-root-paths");
   for (const f of listFiles(dir)) {
+    if (!TEXT_EXT.test(f)) continue; // no tocar binarios (.png, .umd.js)
     const orig = readFileSync(f, "utf8");
-    let txt = orig;
+    let txt = orig.replace(/\r\n/g, "\n");
     if (usesPluginRoot) {
       const n = skill.name;
       txt = txt.split(`.claude/skills/${n}/`).join(`\${CLAUDE_PLUGIN_ROOT}/skills/${n}/`);
@@ -86,7 +90,9 @@ for (const skill of targets) {
   console.log(`PULL  ${skill.name}  <-  ${up.repo} @ ${ref} : ${up.path || "."}`);
   const tmp = mkdtempSync(join(tmpdir(), "craft-skill-"));
   try {
-    git(["clone", "--depth", "1", "--filter=blob:none", "--sparse", "--branch", ref, up.repo, tmp]);
+    // core.autocrlf=false + eol=lf: checkout en LF aunque el git global del usuario use CRLF.
+    // Sin esto, en Windows el clone trae CRLF y todo el diff es ruido de fin-de-linea.
+    git(["-c", "core.autocrlf=false", "-c", "core.eol=lf", "clone", "--depth", "1", "--filter=blob:none", "--sparse", "--branch", ref, up.repo, tmp]);
     if (up.path) git(["-C", tmp, "sparse-checkout", "set", up.path]);
     const src = up.path ? join(tmp, up.path) : tmp;
     if (!existsSync(src)) throw new Error(`el path "${up.path}" no existe en el upstream`);
