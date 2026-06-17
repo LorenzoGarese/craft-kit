@@ -1,0 +1,6 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "description": "Scaffolding de backend .NET con Clean Architecture + CQRS (MediatR) + FluentValidation. La skill vertical-slice genera una vertical slice end-to-end (Command/Query + Handler + Validator + Response + Request DTO + endpoint) siguiendo las convenciones del repo destino.",
+  "author": { "name": "Garese" }
+}

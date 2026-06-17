@@ -2,6 +2,7 @@
   "name": "LorenzoGarese-marketplace",
   "owner": { "name": "Garese" },
   "plugins": [
-    { "name": "craft", "source": "./plugins/craft", "version": "2.1.0", "description": "Kit de UI de producto: UX (ui-ux-pro-max), gusto (frontend-design), auditoria (impeccable), motion (design-motion-principles), texto (stop-slop), video Remotion (remotion-best-practices)." }
+    { "name": "craft", "source": "./plugins/craft", "version": "2.1.0", "description": "Kit de UI de producto: UX (ui-ux-pro-max), gusto (frontend-design), auditoria (impeccable), motion (design-motion-principles), texto (stop-slop), video Remotion (remotion-best-practices)." },
+    { "name": "backend", "source": "./plugins/backend", "version": "0.1.0", "description": "Scaffolding de backend .NET (Clean Architecture + CQRS): vertical slices end-to-end con tus convenciones." }
   ]
 }
