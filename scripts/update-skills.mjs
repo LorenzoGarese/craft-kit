@@ -77,6 +77,11 @@ for (const skill of targets) {
     skipped++;
     continue;
   }
+  if (skill.autoUpdate === false) {
+    console.log(`SKIP  ${skill.name} — actualización manual (el upstream usa build/genera). Ver "notes" en SOURCES.json.`);
+    skipped++;
+    continue;
+  }
   const ref = up.ref || "main";
   console.log(`PULL  ${skill.name}  <-  ${up.repo} @ ${ref} : ${up.path || "."}`);
   const tmp = mkdtempSync(join(tmpdir(), "craft-skill-"));

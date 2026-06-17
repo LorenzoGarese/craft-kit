@@ -1,5 +1,5 @@
 {
-  "_comment": "Procedencia de las skills vendoreadas de craft. Completá 'upstream' (repo/path/ref) de cada una con el lugar real de donde la copiaste. Despues corre: node scripts/update-skills.mjs  para traer la ultima version y reaplicar los parches locales automaticamente.",
+  "_comment": "Procedencia (upstream) de cada skill vendoreada de craft. Corré:  node scripts/update-skills.mjs  para traer la ultima version y reaplicar los parches locales. Skills con autoUpdate:false tienen un upstream con build/generacion y se actualizan a mano (ver notes).",
   "skills": [
     {
       "name": "frontend-design",
@@ -9,40 +9,62 @@
         "ref": "main"
       },
       "patches": [],
-      "notes": "Anthropic. Apache-2.0 (incluye LICENSE.txt)."
+      "notes": "Anthropic. Apache-2.0 (incluye LICENSE.txt). Copia directa de SKILL.md."
+    },
+    {
+      "name": "stop-slop",
+      "upstream": {
+        "repo": "https://github.com/hardikpandya/stop-slop.git",
+        "path": "",
+        "ref": "main"
+      },
+      "patches": [],
+      "notes": "Hardik Pandya (hvpandya.com). SKILL.md en la raiz del repo. Copia directa."
+    },
+    {
+      "name": "design-motion-principles",
+      "upstream": {
+        "repo": "https://github.com/kylezantos/design-motion-principles.git",
+        "path": "skills/design-motion-principles",
+        "ref": "main"
+      },
+      "patches": [],
+      "notes": "kylezantos. Copia directa (verificado byte-identico)."
+    },
+    {
+      "name": "remotion-best-practices",
+      "upstream": {
+        "repo": "https://github.com/remotion-dev/skills.git",
+        "path": "skills/remotion",
+        "ref": "main"
+      },
+      "patches": [],
+      "notes": "Oficial de Remotion (remotion-dev/skills). Copia directa."
     },
     {
       "name": "impeccable",
-      "upstream": { "repo": "", "path": "", "ref": "main" },
+      "autoUpdate": false,
+      "upstream": {
+        "repo": "https://github.com/pbakaus/impeccable.git",
+        "path": "skill",
+        "ref": "main"
+      },
       "patches": ["plugin-root-paths"],
       "replacements": [
         { "find": "Bash(npx impeccable *)", "replace": "Bash(node ${CLAUDE_PLUGIN_ROOT}/skills/impeccable/scripts/*)" }
       ],
-      "notes": "TODO: completar upstream (de donde copiaste impeccable). Parche: rutas .claude/skills -> ${CLAUDE_PLUGIN_ROOT} + allowed-tools."
+      "notes": "pbakaus/impeccable. OJO: el upstream es skill/SKILL.src.md (plantilla con {{command_hint}} que se BUILDEA). Un pull crudo traeria el .src sin buildear. Actualizar a mano: buildear y despues reaplicar parche de rutas + allowed-tools."
     },
     {
       "name": "ui-ux-pro-max",
-      "upstream": { "repo": "", "path": "", "ref": "main" },
+      "autoUpdate": false,
+      "upstream": {
+        "repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+        "path": "src/ui-ux-pro-max",
+        "ref": "main"
+      },
       "patches": ["plugin-root-paths"],
-      "notes": "TODO: completar upstream. Parche: 'python3 skills/...' -> '${CLAUDE_PLUGIN_ROOT}/skills/...'. La carpeta templates/ se excluye del parche a proposito."
-    },
-    {
-      "name": "design-motion-principles",
-      "upstream": { "repo": "", "path": "", "ref": "main" },
-      "patches": [],
-      "notes": "TODO: completar upstream."
-    },
-    {
-      "name": "stop-slop",
-      "upstream": { "repo": "", "path": "", "ref": "main" },
-      "patches": [],
-      "notes": "Hardik Pandya (hvpandya.com). TODO: completar upstream."
-    },
-    {
-      "name": "remotion-best-practices",
-      "upstream": { "repo": "", "path": "", "ref": "main" },
-      "patches": [],
-      "notes": "Remotion. TODO: completar upstream."
+      "notes": "nextlevelbuilder/ui-ux-pro-max-skill. El repo separa source (src/ui-ux-pro-max) de generado (.claude/skills/ui-ux-pro-max). Verificar cual matchea el layout local antes de pullear. Parche: 'python3 skills/...' -> '${CLAUDE_PLUGIN_ROOT}/skills/...'; templates/ se excluye a proposito."
     }
   ]
 }
